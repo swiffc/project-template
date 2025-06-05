@@ -1,0 +1,46 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: Rules and best practices for writing Postgres SQL in this project.
+globs: db/**/*.sql
+alwaysApply: true
+---
+
+# Postgres SQL Rules
+
+1. Use lowercase for all SQL reserved words for consistency and readability.
+2. Use snake_case for all table and column names.
+3. Prefer plural names for tables (e.g., `users`, `orders`).
+4. Prefer singular names for columns (e.g., `user_id`, `created_at`).
+5. Avoid SQL reserved words and ensure all names are unique and under 63 characters.
+6. Do not use prefixes like `tbl_` for tables.
+7. Every table must have an `id` column of type `identity generated always` unless otherwise specified.
+8. Create tables in the `public` schema unless otherwise specified.
+9. Always specify the schema in SQL queries for clarity (e.g., `public.users`).
+10. Add a comment to every table describing its purpose (up to 1024 characters).
+11. Use singular names for columns and avoid generic names like just `id`.
+12. For foreign keys, use the singular table name with `_id` (e.g., `user_id` for a reference to the `users` table).
+13. Store dates in ISO 8601 format (`yyyy-mm-ddThh:mm:ss.sssss`).
+14. Use whitespace and indentation to improve readability.
+15. Add comments for complex logic using `/* ... */` for blocks and `--` for lines.
+16. Keep short queries concise; use newlines for longer queries to enhance readability.
+17. Format joins and subqueries for clarity and align them with related SQL clauses.
+18. Use full table names in joins for readability.
+19. Use meaningful aliases and always include the `as` keyword.
+20. Prefer CTEs (WITH clauses) for complex queries and add comments to each block.
+21. Prioritize readability over performance in query formatting.
+
+## Example
+
+```sql
+create table books (
+  id bigint generated always as identity primary key,
+  title text not null,
+  author_id bigint references authors (id)
+);
+comment on table books is 'A list of all the books in the library.';
+
+```

@@ -1,0 +1,73 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Workflow preferences for collaborative, maintainable, and scalable web/software projects.
+globs: src/**/*
+alwaysApply: true
+---
+# Workflow Preferences
+
+- Focus on the areas of code relevant to the task.
+- Do not touch code that is unrelated to the task.
+- Write thorough tests for all major functionality.
+- Avoid making major changes to the patterns and architecture of how a feature works, after it has shown to work well, unless explicitly instructed.
+- Always think about what other methods and areas of code might be affected by code changes.
+
+## Modern Web Designer & Software Engineer Workflow
+
+1. **Branching Strategy**
+    - Use feature branches for new features and bugfix branches for fixes.
+    - Name branches clearly (e.g., `feature/user-profile`, `bugfix/navbar-overlap`).
+    - Keep the `main` branch always deployable and up to date.
+
+2. **Pull Requests (PRs)**
+    - All changes must go through a pull request, regardless of size.
+    - PRs should be focused, well-documented, and reference related issues or designs.
+    - Include screenshots or screen recordings for UI changes.
+
+3. **Code Reviews**
+    - Every PR must be reviewed by at least one other team member.
+    - Review for code quality, adherence to style guides, performance, accessibility, and user experience.
+    - Use comments for suggestions and questions; resolve all comments before merging.
+
+4. **Testing**
+    - Write automated tests for all major functionality (unit, integration, and end-to-end).
+    - Use Python (pytest/unittest) for backend tests and Jest/Cypress for frontend tests.
+    - All code must pass automated tests before merging.
+
+5. **Continuous Integration/Continuous Deployment (CI/CD)**
+    - Use CI/CD pipelines to automate testing, builds, and deployments.
+    - Never merge code that breaks the build or fails tests.
+
+6. **Environment Management**
+    - Use separate SQL databases for development, testing, and production.
+    - Never use JSON file storage for persistent data.
+    - Use Elasticsearch (elastic.co) for search, with separate dev and prod indexes.
+    - Never test unreviewed code in production.
+
+7. **Documentation**
+    - Update documentation (README, API docs, design specs) with every significant change.
+    - Document new environment variables, endpoints, workflows, and UI patterns.
+
+8. **Issue Tracking & Project Management**
+    - Use an issue tracker (e.g., GitHub Issues, Jira) for all tasks, bugs, and feature requests.
+    - Link PRs to relevant issues and reference design tickets for traceability.
+
+9. **Communication & Collaboration**
+    - Communicate blockers, questions, and progress early and often (e.g., via Slack, Teams, or standups).
+    - Collaborate with designers, QA, and other developers to ensure a smooth workflow and high-quality results.
+
+10. **Release Management**
+    - Tag releases and maintain a changelog.
+    - Use semantic versioning for releases (e.g., `v1.2.3`).
+    - Deploy to staging before production and perform user acceptance testing (UAT).
+
+11. **Retrospectives & Continuous Improvement**
+    - Regularly review workflow and process as a team to identify improvements.
+    - Stay updated with the latest best practices in web design and software engineering.
+
+
+**See also:** [(p.mdc), [Coding Pattern Preferences](mdc:coding-pattern-preferences.mdc)

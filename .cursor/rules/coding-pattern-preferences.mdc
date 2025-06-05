@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Coding pattern preferences for maintainable, scalable, and readable code.
+globs: src/**/*
+alwaysApply: true
+---
+# Coding Pattern Preferences
+
+- Always prefer simple solutions.
+- Avoid duplication of code whenever possible; check for other areas of the codebase that might already have similar code and functionality.
+- Write code that takes into account the different environments: dev, test, and prod.
+- Only make changes that are requested or that you are confident are well understood and related to the change being requested.
+- When fixing an issue or bug, do not introduce a new pattern or technology without first exhausting all options for the existing implementation. If you do introduce something new, make sure to remove the old implementation afterwards so there is no duplicate logic.
+- Keep the codebase very clean and organized.
+- Avoid writing scripts in files if possible, especially if the script is likely only to be run once.
+- Avoid having files over 200-300 lines of code. Refactor at that point.
+- Mocking data is only needed for tests; never mock data for dev or prod.
+- Never add stubbing or fake data patterns to code that affects the dev or prod environments.
+- Never overwrite the .env file without first asking and confirming.
+
+## Additional Best Practices
+
+- Write self-documenting code: Use clear, descriptive variable and function names so the code explains itself. Add comments only where necessary to clarify complex logic.
+- Follow the DRY principle (“Don’t Repeat Yourself”): Abstract repeated logic into functions or modules.
+- Apply the YAGNI principle (“You Aren’t Gonna Need It”): Only implement features and abstractions when you actually need them.
+- Embrace the KISS principle (“Keep It Simple, Stupid”): Avoid overcomplicating solutions; prefer straightforward approaches.
+- Single Responsibility Principle: Each function, class, or module should have one clear responsibility.
+- Consistent error handling: Handle errors gracefully and consistently throughout the codebase. Use try/catch or error boundaries as appropriate.
+- Code reviews: All code changes should be reviewed by at least one other team member before merging.
+- Automated testing: Write unit and integration tests for critical logic. Maintain a good test coverage.
+- Consistent formatting: Use a linter and formatter (like Prettier or ESLint) to enforce consistent code style.
+- Avoid magic numbers and strings: Use named constants for values that have special meaning.
+- Minimize side effects: Functions should avoid changing state or data outside their scope unless explicitly intended.
+- Document public APIs: If your code exposes APIs (internal or external), document their usage, parameters, and expected behavior.
+- Refactor regularly: Don’t be afraid to improve code structure as you go, especially when adding new features or fixing bugs.
+- Limit function and class size: Break up large functions or classes into smaller, more manageable pieces.
+- Dependency management: Only add dependencies when necessary, and keep them up to date.
+- Security best practices: Sanitize inputs, avoid exposing sensitive data, and follow security guidelines relevant to your stack.
+
+**See also:** [(pgement.mdc), [Workflow Preferences](mdc:workflow-preferences.mdc)
+
