@@ -1,0 +1,150 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# API Integration Standards
+
+This document outlines the standards and best practices for integrating external APIs into the project.
+
+## API Configuration
+
+1. **Environment Variables**:
+   - Store API keys in `.env` file
+   - Use descriptive variable names (e.g., `ANTHROPIC_API_KEY`)
+   - Never commit API keys to version control
+   - Document required environment variables in README
+
+2. **API Client Setup**:
+   - Create dedicated client files (e.g., `claude.ts`)
+   - Initialize clients with proper error handling
+   - Use TypeScript for type safety
+   - Implement retry logic for transient failures
+
+## Error Handling
+
+1. **API Errors**:
+   - Catch and handle API-specific errors
+   - Provide meaningful error messages
+   - Log errors with appropriate context
+   - Implement graceful fallbacks when possible
+
+2. **Rate Limiting**:
+   - Implement rate limiting handling
+   - Add exponential backoff for retries
+   - Monitor API usage and quotas
+
+## API Routes
+
+1. **Route Structure**:
+   - Use consistent route naming (e.g., `/api/claude`)
+   - Implement proper request validation
+   - Return standardized response formats
+   - Document route parameters and responses
+
+2. **Response Format**:
+```typescript
+{
+  success: boolean;
+  data?: any;
+  error?: {
+    message: string;
+    code?: string;
+  };
+}
+```
+
+## Security
+
+1. **API Key Management**:
+   - Rotate keys regularly
+   - Use key scoping when available
+   - Implement key validation on startup
+   - Monitor for unauthorized usage
+
+2. **Request Validation**:
+   - Validate all input parameters
+   - Sanitize user input
+   - Implement request size limits
+   - Use proper content types
+
+## Testing
+
+1. **Unit Tests**:
+   - Mock API responses
+   - Test error scenarios
+   - Verify request formatting
+   - Test retry logic
+
+2. **Integration Tests**:
+   - Test with real API (in test environment)
+   - Verify error handling
+   - Test rate limiting
+   - Validate response parsing
+
+## Monitoring
+
+1. **Logging**:
+   - Log API requests and responses
+   - Track error rates
+   - Monitor response times
+   - Log rate limit hits
+
+2. **Metrics**:
+   - Track API usage
+   - Monitor success rates
+   - Track response times
+   - Monitor error rates
+
+## Documentation
+
+1. **API Documentation**:
+   - Document API endpoints
+   - Include request/response examples
+   - Document error scenarios
+   - Include rate limit information
+
+2. **Setup Instructions**:
+   - Document environment setup
+   - Include API key acquisition steps
+   - Document configuration options
+   - Include troubleshooting guide
+
+## Example Implementation
+
+```typescript
+// Example API client setup
+import { Anthropic } from '@anthropic-ai/sdk';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+if (!process.env.ANTHROPIC_API_KEY) {
+  throw new Error('ANTHROPIC_API_KEY environment variable is not set');
+}
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
+
+export async function getClaudeResponse(prompt: string) {
+  try {
+    const message = await anthropic.messages.create({
+      model: 'claude-3-opus-20240229',
+      max_tokens: 1024,
+      messages: [{ role: 'user', content: prompt }],
+    });
+
+    return message.content[0].text;
+  } catch (error) {
+    console.error('Error calling Claude API:', error);
+    throw error;
+  }
+}
+```
+
+## References
+
+- [Cursor Rules Guidelines](mdc:.cursor/rules/cursor_rules.mdc)
+- [Development Workflow](mdc:.cursor/rules/dev_workflow.mdc)
+- [Testing Standards](mdc:.cursor/rules/tests.mdc)
