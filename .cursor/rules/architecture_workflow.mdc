@@ -1,0 +1,88 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Project Architecture & Workflow (v1.4)
+
+## Universal Starter Templates & Folder Structure
+- All new projects must use the Universal Starter Template system for instant, production-ready setup. Use the `create-project.bat` script in the project root for automated project creation.
+- Template is selected automatically based on project keywords (see below).
+- Each template provides a modern, best-practice folder structure for its project type.
+- No Docker required; all templates are Windows-friendly.
+
+### Quickstart: Automated Project Creation
+- To create a new project, run:
+  ```
+  create-project.bat [project-type] [project-name] [options]
+  ```
+- Example:
+  ```
+  create-project.bat react-spa my-awesome-app --github
+  ```
+- For help and available options, run:
+  ```
+  create-project.bat --help
+  ```
+
+### Template Selection Logic
+```
+When a user requests a project, the system automatically determines the template based on keywords:
+- Web: website, app, dashboard, blog, ecommerce, portfolio, etc.
+- Backend: api, microservice, graphql, realtime, etc.
+- Desktop: desktop, electron, windows, macos, cross-platform, etc.
+- Mobile: mobile, ios, android, flutter, etc.
+- Automation: automation, script, cad, data processing, etc.
+- Specialized: ai, ml, blockchain, game, iot, etc.
+```
+
+### Example Folder Structures
+- Each template (React/Next.js SPA, REST API, Static Website, Electron Desktop, React Native Mobile, Automation Script, CAD Automation, AI/ML Project) has a detailed, modern folder structure (see reference_meta.mdc for full specs).
+- All templates include:
+  - Modern folder structure
+  - TypeScript/strict typing where applicable
+  - ESLint + Prettier configuration
+  - Git hooks for quality gates
+  - Comprehensive README
+  - Environment configuration
+  - Testing framework setup
+  - CI/CD pipeline configuration
+  - Security and performance best practices
+  - Documentation templates
+
+### Template Generation
+- Use the provided commands to generate and customize templates for any project type.
+- See reference_meta.mdc for command examples and customization options.
+
+## Project Structure
+- Use modular, layered architecture (domain, application, infrastructure, presentation)
+- Organize by feature/module for scalability
+- Example folder structure:
+  - src/
+    - domain/
+    - application/
+    - infrastructure/
+    - presentation/
+    - components/
+    - utils/
+    - tests/
+- Separate dev, test, and prod environments
+- Use SQL databases (PostgreSQL preferred), never JSON for persistence
+- For environment consistency, use Python virtual environments (`venv`), nvm-windows for Node.js, .env files for configuration, and pre-commit hooks. Automate setup and checks with cross-platform scripts (e.g., Python, Justfile). Use CI/CD pipelines for reproducible builds and tests. (No Docker required.)
+
+## Workflow
+- Use feature branches and PRs for all changes
+- Branching strategy: GitFlow or trunk-based (main, develop, feature/*, hotfix/*)
+- All code changes require code review and must pass CI
+- Automated tests for all major functionality
+- Use Task Master for task-driven development (MCP server preferred)
+- Start with project initialization, then parse PRD, then break down and implement tasks by complexity
+- Use dependency management and task expansion tools to maintain order
+- Handle migrations with versioned scripts and document all breaking changes in the changelog
+
+## Scaling & Management
+- Refactor as soon as code becomes repetitive or hard to maintain
+- Add TypeScript and frontend frameworks as UI complexity grows
+- Use Google Cloud for all deployments
+- Monitor performance and errors in production
+- Maintain clear documentation and update with every significant change

@@ -1,0 +1,27 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Testing & Quality Assurance (v1.2)
+
+## Testing
+- Write unit, integration, and E2E tests for all critical logic
+- Use pytest for backend, Jest/Cypress for frontend
+- Maintain at least 80% test coverage overall
+- 100% coverage for utility functions, 80% for integration/business logic
+- Use automated test runners in CI/CD
+- Name tests clearly and organize by feature/module
+- Mark and quarantine flaky tests; do not block CI on known flaky tests
+- Investigate and fix flaky tests as a priority
+- For environment consistency, use Python virtual environments (`venv`), nvm-windows for Node.js, .env files for configuration, and pre-commit hooks. Automate setup and checks with cross-platform scripts (e.g., Python, Justfile). Use CI/CD pipelines for reproducible builds and tests. (No Docker required.)
+
+## Monitoring & Telemetry
+- Integrate telemetry for AI usage, performance, and errors
+- Use scripts/modules/ai-services-unified.js for telemetry data
+- Propagate telemetry through all layers (core, direct, MCP, CLI)
+
+## Utilities
+- Abstract repeated logic into utility functions
+- Use shared utilities for error handling, logging, and configuration
+- Keep utility files small and focused

@@ -6,8 +6,8 @@ color 0A
 cls
 echo.
 echo ================================================
-echo              PROJECT MANAGER                 
-echo           Development Toolkit                
+echo              PROJECT MANAGER
+echo           Development Toolkit
 echo ================================================
 echo.
 echo   1. Start Development Server
@@ -40,7 +40,7 @@ goto menu
 cls
 echo.
 echo ================================================
-echo             STARTING DEV SERVER             
+echo             STARTING DEV SERVER
 echo ================================================
 echo.
 
@@ -125,7 +125,7 @@ goto menu
 cls
 echo.
 echo ================================================
-echo            QUICK VERSION COMMIT              
+echo            QUICK VERSION COMMIT
 echo ================================================
 echo.
 
@@ -207,7 +207,7 @@ goto menu
 cls
 echo.
 echo ================================================
-echo           CUSTOM COMMIT MESSAGE             
+echo           CUSTOM COMMIT MESSAGE
 echo ================================================
 echo.
 
@@ -268,7 +268,7 @@ goto menu
 cls
 echo.
 echo ================================================
-echo              GIT STATUS REPORT               
+echo              GIT STATUS REPORT
 echo ================================================
 echo.
 
@@ -308,7 +308,7 @@ goto menu
 cls
 echo.
 echo ================================================
-echo             PROJECT INFORMATION              
+echo             PROJECT INFORMATION
 echo ================================================
 echo.
 
@@ -360,7 +360,7 @@ goto menu
 cls
 echo.
 echo ================================================
-echo           INSTALLING DEPENDENCIES           
+echo           INSTALLING DEPENDENCIES
 echo ================================================
 echo.
 
@@ -384,7 +384,7 @@ goto menu
 cls
 echo.
 echo ================================================
-echo            PULLING LATEST CHANGES           
+echo            PULLING LATEST CHANGES
 echo ================================================
 echo.
 
@@ -420,7 +420,7 @@ goto menu
 cls
 echo.
 echo ================================================
-echo           SETUP .GITIGNORE FILE           
+echo           SETUP .GITIGNORE FILE
 echo ================================================
 echo.
 
@@ -518,7 +518,7 @@ if %errorlevel% equ 0 (
     echo - secrets/ folder is ignored
     echo - All sensitive data patterns are covered
     echo.
-    
+
     if not exist ".env.example" (
         echo [INFO] Creating .env.example template...
         echo # Environment Variables Template > .env.example
@@ -536,7 +536,7 @@ if %errorlevel% equ 0 (
         echo NODE_ENV=development >> .env.example
         echo [SUCCESS] Created .env.example template file
     )
-    
+
     if exist ".env" (
         git ls-files --error-unmatch .env >nul 2>&1
         if !errorlevel! equ 0 (
@@ -550,7 +550,7 @@ if %errorlevel% equ 0 (
             )
         )
     )
-    
+
 ) else (
     echo [ERROR] Failed to create .gitignore file
 )
@@ -562,7 +562,7 @@ goto menu
 cls
 echo.
 echo ================================================
-echo                GOODBYE!                      
+echo                GOODBYE!
 echo ================================================
 echo.
 echo Thanks for using Project Manager!

@@ -1,0 +1,24 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# UI & Data Handling (v1.2)
+
+## UI Standards
+- Use modern frameworks (React, Vue) with TypeScript
+- Implement dark mode, responsive design, and accessibility (WCAG 2.1 AA)
+- Use design tokens and component libraries
+- Include loading, error, and empty states in all components
+- Use Storybook for component documentation
+- Design review and handoff via Figma or Zeplin
+- Preferred state management: Redux, Zustand, or Context API
+- For environment consistency, use Python virtual environments (`venv`), nvm-windows for Node.js, .env files for configuration, and pre-commit hooks. Automate setup and checks with cross-platform scripts (e.g., Python, Justfile). Use CI/CD pipelines for reproducible builds and tests. (No Docker required.)
+
+## Data Fetching
+- Use SWR or similar for client-side data fetching
+- Fetch data inline in server components
+- Use server actions for mutations
+- Handle errors with user feedback (toasts, alerts)
+- Never mock data in dev/prod, only in tests
+- Handle API versioning and breaking changes in data contracts with clear documentation and migration guides

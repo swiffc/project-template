@@ -1,0 +1,72 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Reference & Meta (v1.4)
+
+## Universal Starter Templates
+- The Universal Starter Template system provides instant, production-ready templates for any project type.
+- Template selection is automatic based on project keywords (see architecture_workflow.mdc for logic).
+- Each template includes a modern, best-practice folder structure, strict typing, linting, CI/CD, security, and documentation.
+- See below for summarized folder structures and template features.
+- For full details and template generation commands, see architecture_workflow.mdc.
+
+### Quickstart: Automated Project Creation
+- To create a new project, run:
+  ```
+  create-project.bat [project-type] [project-name] [options]
+  ```
+- Example:
+  ```
+  create-project.bat react-spa my-awesome-app --github
+  ```
+- For help and available options, run:
+  ```
+  create-project.bat --help
+  ```
+
+### Example Template Folder Structures
+- React/Next.js SPA: src/app, src/components, src/lib, src/hooks, src/store, src/types, public, tests, docs, etc.
+- REST API: src/controllers, src/services, src/models, src/routes, src/utils, tests, docs, scripts, logs, etc.
+- Static Website: src/pages, src/components, src/layouts, src/assets, src/styles, public, tests, etc.
+- Electron Desktop: src/main, src/renderer, src/shared, src/preload, assets, build, tests, etc.
+- React Native Mobile: src/components, src/screens, src/navigation, src/services, src/store, src/utils, android, ios, tests, etc.
+- Automation Script: src/scripts, src/config, src/data, src/logs, src/tests, docs, etc.
+- CAD Automation: src/autocad, src/solidworks, src/fusion360, src/shared, drawings, models, exports, docs, etc.
+- AI/ML Project: src/data, src/models, src/features, src/utils, src/api, data, models, notebooks, tests, configs, etc.
+
+### Template Generation Commands
+- See architecture_workflow.mdc for command examples and customization options for each template type.
+
+## Glossary
+- Maintain a glossary of all key terms and rules
+- To contribute, edit this file or submit a PR with new terms
+
+## Rule Documentation
+- All rules must be clear, concise, and actionable
+- Use markdown structure and code examples
+- Cross-reference related rules
+- Add version/date at the top of each rule file
+
+## Versioning & Changelog
+- Use Changesets for versioning and changelog generation
+- Only create changesets for user-facing or workflow-impacting changes
+- Changelog template:
+  - [Type] [Scope]: [Short description]
+  - Example: feat(api): Add new endpoint for user profile
+
+## SQL Guidelines
+- Use clear, consistent naming for tables and columns
+- Prefer PostgreSQL features for complex data
+- Document all schema changes
+
+## Onboarding
+- New contributors: start with the README and this file
+- Ask questions or propose rule changes via PR or issue
+
+## Specialized Integration Guidelines
+- For Task Master MCP Server architecture, direct function, and tool integration standards, see [`mcp.mdc`](mcp.mdc).
+
+## Environment Consistency
+- For environment consistency, use Python virtual environments (`venv`), nvm-windows for Node.js, .env files for configuration, and pre-commit hooks. Automate setup and checks with cross-platform scripts (e.g., Python, Justfile). Use CI/CD pipelines for reproducible builds and tests. (No Docker required.)

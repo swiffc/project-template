@@ -1,0 +1,22 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# AI & Integration (v1.2)
+
+## AI Providers & Services
+- Configure API keys in .env or .cursor/mcp.json (never hardcode)
+- Use unified AI service layer for all AI calls
+- Always propagate telemetry data
+- Use supported providers (OpenAI, Anthropic, Perplexity, etc.)
+- Document prompt engineering strategies and model selection
+- Handle rate limits, retries, and fallbacks for all AI calls
+- Log and monitor all AI interactions for performance and errors
+- For environment consistency, use Python virtual environments (`venv`), nvm-windows for Node.js, .env files for configuration, and pre-commit hooks. Automate setup and checks with cross-platform scripts (e.g., Python, Justfile). Use CI/CD pipelines for reproducible builds and tests. (No Docker required.)
+
+## API Integration
+- Use REST or GraphQL as appropriate
+- Validate all inputs and handle errors gracefully
+- Document all endpoints and expected responses
+- Use dependency injection for API clients

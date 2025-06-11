@@ -1,0 +1,27 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Task Management & CLI (v1.2)
+
+## Task Creation & Management
+- Use Task Master CLI or MCP tools for all task operations
+- Tasks must have clear IDs, titles, descriptions, status, dependencies, and priority
+- Use PRD parsing to generate initial tasks
+- Expand complex tasks into subtasks using complexity analysis
+- Maintain valid dependency structure (no circular or missing dependencies)
+- All tasks must be reviewed and approved before implementation
+- Use automation for recurring or templated tasks
+- For environment consistency, use Python virtual environments (`venv`), nvm-windows for Node.js, .env files for configuration, and pre-commit hooks. Automate setup and checks with cross-platform scripts (e.g., Python, Justfile). Use CI/CD pipelines for reproducible builds and tests. (No Docker required.)
+
+## CLI Usage
+- Use CLI for listing, showing, adding, updating, and removing tasks
+- All commands must be documented and follow consistent patterns
+- Use automated tools for dependency validation and fixing
+- Cross-reference task dependencies in code and documentation
+
+## Features & Updates
+- Add new tasks and features as discovered during development
+- Use update commands to handle implementation drift
+- All changes must be reflected in tasks.json and related files

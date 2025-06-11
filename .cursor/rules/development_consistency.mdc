@@ -1,0 +1,67 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Development & Consistency Standards (v1.4)
+
+## Universal Starter Templates
+- All new projects must use the Universal Starter Template system for instant, production-ready setup and folder structure. Use the `create-project.bat` script in the project root for automated project creation.
+- See architecture_workflow.mdc and reference_meta.mdc for template selection logic, folder structure specs, and generation commands.
+
+### Quickstart: Automated Project Creation
+- To create a new project, run:
+  ```
+  create-project.bat [project-type] [project-name] [options]
+  ```
+- Example:
+  ```
+  create-project.bat react-spa my-awesome-app --github
+  ```
+- For help and available options, run:
+  ```
+  create-project.bat --help
+  ```
+
+## Code Quality & Best Practices
+- Enforce strict typing (TypeScript strict mode, Python type hints)
+- Use ESLint, Prettier, Black, and Flake8 for code style
+- Pre-commit hooks for linting, formatting, and consistency
+- Consistent error handling and input validation
+- Security best practices (OWASP, dependency checks)
+- DRY, SOLID, and Single Responsibility Principle
+- Comprehensive documentation and docstrings
+- Accessibility and SEO standards
+- Use automated dependency update tools (Dependabot, Renovate)
+- For environment consistency, use Python virtual environments (`venv`), nvm-windows for Node.js, .env files for configuration, and pre-commit hooks. Automate setup and checks with cross-platform scripts (e.g., Python, Justfile). Use CI/CD pipelines for reproducible builds and tests. (No Docker required.)
+
+## Code Review Standards
+- All code changes require PR review by at least one other contributor
+- Use a PR checklist: tests passing, linting, documentation, changelog, no secrets/keys
+- Reviewers must check for architectural, security, and performance issues
+
+## Documentation Standards
+- Every module must have a README or docstring
+- API endpoints and CLI commands must be documented
+- Update documentation with every significant change
+
+## Consistency Enforcement
+- Analyze codebase before changes
+- Systematic update enforcement for components, APIs, utilities, and types
+- Cross-file and multi-file consistency required
+- Automated consistency checks (scripts/validate_consistency.py)
+- Emergency recovery and rollback procedures
+
+## Self-Improvement & Rule Evolution
+- Add new rules for repeated patterns or new tech
+- Update rules for new best practices or code review feedback
+- Remove outdated or redundant rules
+- Document all changes and keep rules actionable
+
+## Development Sequence
+- Build in order of complexity: Core/Architecture → Features/APIs → Components/Utilities → Pages/Styling
+- Always start with the most complex, foundational elements
+
+## Automated Enforcement
+- All standards are enforced via pre-commit, CI, and validation scripts
+- All code must pass consistency, linting, testing, and security checks before merge
