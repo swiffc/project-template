@@ -3,7 +3,7 @@ description:
 globs:
 alwaysApply: false
 ---
-# Development & Consistency Standards (v1.4)
+# Development & Consistency Standards (v1.5)
 
 ## Universal Starter Templates
 - All new projects must use the Universal Starter Template system for instant, production-ready setup and folder structure. Use the `create-project.bat` script in the project root for automated project creation.
@@ -22,6 +22,15 @@ alwaysApply: false
   ```
   create-project.bat --help
   ```
+
+## Development Server
+- All projects use a unified development server running on port 3000
+- Frontend and backend are served from the same origin
+- Development URLs:
+  - Main Application: http://localhost:3000
+  - API Documentation: http://localhost:3000/docs
+  - Health Check: http://localhost:3000/api/health
+- No proxy configuration needed - all routes handled by the main server
 
 ## Code Quality & Best Practices
 - Enforce strict typing (TypeScript strict mode, Python type hints)

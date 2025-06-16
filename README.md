@@ -5,6 +5,7 @@ A powerful, modern project scaffolding tool that helps developers create and man
 ---
 
 ## Table of Contents
+
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -22,6 +23,7 @@ A powerful, modern project scaffolding tool that helps developers create and man
 ---
 
 ## Features
+
 - 🏗️ **Production-Ready Templates** for React, Next.js, FastAPI, Electron, Python, and more
 - 🔒 **Strict Typing** (TypeScript, Python type hints)
 - 🧩 **Modular, Universal Folder Structure**
@@ -34,6 +36,7 @@ A powerful, modern project scaffolding tool that helps developers create and man
 ---
 
 ## Prerequisites
+
 - Python 3.10+
 - Node.js 18+ (for JS/TS projects)
 - [pip](https://pip.pypa.io/en/stable/installation/)
@@ -48,7 +51,7 @@ Clone the repository and install dependencies:
 
 ```bash
 # Clone the repo
-git clone https://github.com/swiffc/project-template.git
+git clone [https://github.com/swiffc/project-template.git](https://github.com/swiffc/project-template.git)
 cd project-template
 
 # Set up Python virtual environment (recommended)
@@ -83,9 +86,11 @@ python scripts/dev.py setup
 ```
 
 **Supported project types:**
+
 - react-spa, nextjs-fullstack, vue-nuxt, express-api, fastapi-backend, electron-desktop, python-automation, windows-automation, cad-automation, ai-ml-project, static-website
 
 **Options:**
+
 - `--github` : Enable GitHub integration
 - `--advanced` : Enable advanced mode
 - `--template [variant]` : Use a specific template variant
@@ -115,42 +120,73 @@ project-root/
 ## Development Workflow
 
 **Set up the development environment:**
+
 ```bash
 python scripts/dev.py setup
 ```
 
 **Run tests:**
+
 ```bash
 python scripts/dev.py test
 ```
 
 **Run linting and type checks:**
+
 ```bash
 python scripts/dev.py lint
 ```
 
 **Validate project structure:**
+
 ```bash
 python scripts/validate.py
 ```
 
 **Run all checks:**
+
 ```bash
 python scripts/dev.py all
 ```
 
 ---
 
+## Development Server
+
+**Start the development server:**
+
+```bash
+# Start the unified development server
+python scripts/dev.py run-dev
+# The application will be available at http://localhost:3000
+```
+
+**Development URLs:**
+
+- Main Application: [http://localhost:3000](http://localhost:3000)
+- API Documentation: [http://localhost:3000/docs](http://localhost:3000/docs)
+- Health Check: [http://localhost:3000/api/health](http://localhost:3000/api/health)
+
+**Note:** The application runs on a single port (3000) with:
+
+- Frontend routes: `http://localhost:3000/...`
+- API routes: `http://localhost:3000/api/...`
+
+---
+
 ## Environment Variables & Secrets
 
 1. **Create a `.env` file in your project root:**
+
    ```env
    ANTHROPIC_API_KEY=your_anthropic_key
    PERPLEXITY_API_KEY=your_perplexity_key
    GOOGLE_API_KEY=your_google_key
    # Add any other secrets or config here
    ```
+
 2. **Never commit your `.env` file!** It is already in `.gitignore`.
+
 3. **Share `.env.example` (if needed) with placeholders for team members.**
 
 ---
@@ -160,20 +196,25 @@ python scripts/dev.py all
 The system includes a research module for advanced research using Anthropic, Perplexity, and Google APIs.
 
 **Setup:**
+
 - Add your API keys to `.env` as above.
 - Install dependencies:
+
   ```bash
   pip install requests python-dotenv
   ```
 
 **Run deep research:**
+
 1. Edit `run_deep_research.py` to set your prompt (see examples below).
 2. Run:
+
    ```bash
    python run_deep_research.py
    ```
 
 **Example prompt:**
+
 ```python
 prompt = (
     "The Cursor Development System is a modern, open-source project scaffolding tool for Python, JavaScript, and full-stack projects. "
@@ -184,6 +225,7 @@ prompt = (
 ```
 
 **Sample code:**
+
 ```python
 from dotenv import load_dotenv
 load_dotenv()
@@ -196,6 +238,7 @@ for provider, result in results.items():
 ---
 
 ## Customizing Templates
+
 - Edit files in `src/modules/` to add or modify project templates.
 - Update `.cursor/rules/` for custom AI rules and project standards.
 - Add new scripts to `scripts/` for automation.
@@ -205,6 +248,7 @@ for provider, result in results.items():
 ---
 
 ## Troubleshooting
+
 - **API key errors:** Double-check your `.env` file and that the correct APIs are enabled for your keys.
 - **Google API 403:** Ensure the Generative Language API is enabled and billing is set up.
 - **Perplexity 404:** You may need to request access to the Perplexity API.
@@ -215,15 +259,18 @@ for provider, result in results.items():
 ---
 
 ## Contributing
+
 Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details.
 
 ---
 
 ## License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 ## Acknowledgments
+
 - [Cursor AI](https://cursor.sh) for the amazing development environment
 - All contributors who have helped shape this project

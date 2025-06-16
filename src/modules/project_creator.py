@@ -1,9 +1,10 @@
-"""Project Creator Module."""
+"""Project creator module for generating new projects."""
 
 import json
 from datetime import datetime
 
 from ..core.core_types import ExecutionContext, ModuleResult, ProjectType
+from ..core.env_manager import EnvManager
 from ..core.module import BaseModule
 
 
@@ -13,17 +14,28 @@ class ProjectCreatorModule(BaseModule):
     def __init__(self) -> None:
         """Initialize ProjectCreatorModule."""
         super().__init__("project_creator", "Creates project directory structure")
+        self.env_manager = EnvManager()
+
+    def validate(self, context: ExecutionContext) -> bool:
+        """Validate project creator can execute."""
+        if not super().validate(context):
+            return False
+
+        if context.project_root.exists():
+            self.log_error(f"Project directory already exists: {context.project_root}")
+            return False
+
+        return True
 
     def execute(self, context: ExecutionContext) -> ModuleResult:
         """Execute project creation."""
         try:
-            self.log_info(f"Creating project: {context.project_name}")
+            self.log_info(
+                f"Creating {context.project_type.value} project: {context.project_name}"
+            )
 
-            # Create project root directory
-            context.project_root.mkdir(parents=True, exist_ok=True)
-
-            # Create base directory structure
-            self._create_base_structure(context)
+            # Create project directory
+            context.project_root.mkdir(parents=True)
 
             # Create project metadata
             self._create_project_metadata(context)
@@ -31,11 +43,13 @@ class ProjectCreatorModule(BaseModule):
             # Create base files
             self._create_base_files(context)
 
+            # Copy environment configuration
+            self.env_manager.copy_to_project(context.project_root)
+
             return ModuleResult(
                 module_name=self.name,
                 success=True,
-                message=(f"Project structure created at: " f"{context.project_root}"),
-                data={"project_root": str(context.project_root)},
+                message="Project creation completed successfully",
             )
 
         except Exception as e:

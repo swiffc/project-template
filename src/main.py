@@ -6,9 +6,37 @@ import sys
 from pathlib import Path
 from typing import Optional
 
+from fastapi import FastAPI, Request
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+
 from .core.core_types import ExecutionContext, ProjectType
 from .modules.file_organizer import FileOrganizerModule
 from .modules.project_creator import ProjectCreatorModule
+
+app = FastAPI(title="Unified Web Application")
+
+# Mount the frontend static files
+app.mount("/static", StaticFiles(directory="dist"), name="static")
+
+
+# API routes
+@app.get("/api/health")  # type: ignore[misc]
+async def health_check() -> dict:
+    """Return health status of the API."""
+    return {"status": "healthy"}
+
+
+# Serve the frontend for all other routes
+@app.get("/{path:path}")  # type: ignore[misc]
+async def serve_frontend(path: str, request: Request) -> FileResponse:
+    """Serve the frontend application."""
+    # If the path starts with /api, let FastAPI handle it
+    if path.startswith("api"):
+        return None
+
+    # Serve the frontend index.html for all other routes
+    return FileResponse("dist/index.html")
 
 
 def setup_logging() -> None:
@@ -66,7 +94,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def create_project(args: argparse.Namespace) -> Optional[Path]:
-    """Create a new project."""
+    """Create a new project and return the project root path if successful."""
     try:
         # Create execution context
         context = ExecutionContext(
@@ -111,8 +139,8 @@ def create_project(args: argparse.Namespace) -> Optional[Path]:
         return None
 
 
-def main() -> int:
-    """Run the main program."""
+def main() -> None:
+    """Run the main application entry point."""
     try:
         # Set up logging
         setup_logging()
@@ -123,15 +151,14 @@ def main() -> int:
         # Create project
         project_root = create_project(args)
         if not project_root:
-            return 1
+            return
 
         logging.info(f"Project created successfully at: {project_root}")
-        return 0
 
     except Exception as e:
         logging.error(f"Fatal error: {str(e)}")
-        return 1
+        sys.exit(1)
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

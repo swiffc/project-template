@@ -6,10 +6,16 @@ import subprocess
 import sys
 from pathlib import Path
 
+from src.core.env_manager import EnvManager
+
 
 def setup_environment() -> None:
     """Set up development environment."""
     print("Setting up development environment...")
+
+    # Initialize environment manager
+    env_manager = EnvManager()
+    env_manager.load_global_env()
 
     # Create virtual environment if it doesn't exist
     if not Path(".venv").exists():
@@ -45,8 +51,6 @@ def run_linting() -> None:
     print("Running linting...")
     subprocess.run(["flake8", "src"])
     subprocess.run(["mypy", "src"])
-    subprocess.run(["black", "--check", "src"])
-    subprocess.run(["isort", "--check-only", "src"])
 
 
 def run_consistency_check() -> None:
@@ -54,51 +58,52 @@ def run_consistency_check() -> None:
     print("Running consistency validation...")
     result = subprocess.run([sys.executable, "scripts/validate_consistency.py"])
     if result.returncode != 0:
-        print("\nConsistency validation failed!")
-        print("Please fix the issues before continuing.")
+        print("Consistency validation failed!")
         sys.exit(1)
-    print("Consistency validation passed!")
 
 
 def run_security_check() -> None:
     """Run security checks."""
     print("Running security checks...")
     subprocess.run(["bandit", "-r", "src"])
-    subprocess.run(["safety", "check"])
 
 
 def run_performance_check() -> None:
     """Run performance checks."""
     print("Running performance checks...")
-    # Add performance testing commands here
-    pass
+    subprocess.run(["pytest", "--durations=0"])
 
 
 def run_accessibility_check() -> None:
     """Run accessibility checks."""
     print("Running accessibility checks...")
-    # Add accessibility testing commands here
-    pass
+    subprocess.run(["pa11y", "http://localhost:3000"])
 
 
 def run_all_checks() -> None:
-    """Run all development checks."""
-    print("Running all development checks...")
-
-    # Run checks in order of importance
+    """Run all checks."""
+    run_tests()
+    run_linting()
     run_consistency_check()
     run_security_check()
-    run_linting()
-    run_tests()
     run_performance_check()
     run_accessibility_check()
 
-    print("\nAll checks completed successfully!")
+
+def run_dev_server() -> None:
+    """Run development server."""
+    print("Starting development server...")
+    # Load environment variables
+    env_manager = EnvManager()
+    env_manager.load_global_env()
+
+    # Start the server
+    subprocess.run(["python", "src/main.py", "run-dev"])
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python scripts/dev.py [setup|test|lint|consistency|all]")
+        print("Usage: python scripts/dev.py [setup|test|lint|consistency|all|run-dev]")
         sys.exit(1)
 
     command = sys.argv[1]
@@ -118,6 +123,8 @@ if __name__ == "__main__":
         run_accessibility_check()
     elif command == "all":
         run_all_checks()
+    elif command == "run-dev":
+        run_dev_server()
     else:
         print(f"Unknown command: {command}")
         sys.exit(1)

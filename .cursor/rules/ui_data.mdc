@@ -3,7 +3,7 @@ description:
 globs:
 alwaysApply: false
 ---
-# UI & Data Handling (v1.2)
+# UI & Data Handling (v1.3)
 
 ## UI Standards
 - Use modern frameworks (React, Vue) with TypeScript
@@ -22,3 +22,12 @@ alwaysApply: false
 - Handle errors with user feedback (toasts, alerts)
 - Never mock data in dev/prod, only in tests
 - Handle API versioning and breaking changes in data contracts with clear documentation and migration guides
+
+## API Integration
+- All API endpoints are served from the same origin (http://localhost:3000/api/...)
+- Use consistent API response format
+- Implement proper error handling and status codes
+- Use middleware for request validation and transformation
+- Implement rate limiting and security measures
+- Document all API endpoints with OpenAPI/Swagger
+- Version APIs appropriately (e.g., /api/v1/...)
